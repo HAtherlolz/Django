@@ -1,0 +1,16 @@
+{% extends 'comments/base.html' %}
+{% block content %}
+  {% for servmonitor in servmonitor_list %}
+    <div class="otakoi">
+      <ul class="list-group">
+        <li class="list-group-item active">{{ servmonitor.name }}</li>
+        <li class="list-group-item">{{ servmonitor.time}}</li>
+        <li class="list-group-item">{{ servmonitor.type }}</li>
+        <li class="list-group-item">{{ servmonitor.email}}</li>
+        <li class="list-group-item">{{ servmonitor.group }}</li>
+        <li class="list-group-item">{{ servmonitor.group_type }}</li>
+        <li class="list-group-item">{{ servmonitor.gps}}</li>
+      </ul>
+    </div>
+  {% endfor %}
+{% endblock content%}
