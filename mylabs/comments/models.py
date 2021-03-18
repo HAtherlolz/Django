@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -13,9 +14,21 @@ class ServMonitor(models.Model):
     url = models.SlugField(max_length=160, unique=True, null=False)
     draft = models.BooleanField("Черновик", default=False)
 
+
+    def get_absolute_url(self):
+        return reverse("serv_mon_detail", kwargs={"slug": self.url})
+
+
     def __str__(self):
         return self.name
 
-    '''class Meta:
-        verbose_name = "Имя"
-        verbose_name_plural = "Имя"'''
+
+class PdfMaker(models.Model):
+    name = models.CharField("Имя", max_length=150)
+    time = models.TimeField()
+    type = models.CharField("Тип оповещения", max_length=150)
+    email = models.EmailField()
+    url = models.SlugField(max_length=160, unique=True, null=False)
+
+    def __str__(self):
+        return self.name

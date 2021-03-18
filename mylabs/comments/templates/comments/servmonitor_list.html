@@ -1,15 +1,14 @@
 {% extends 'comments/base.html' %}
 {% block content %}
+  <a href="{% url 'serv_mon_add' %}" class='btn btn-success'>Form Create </a>
+  <a href="{% url 'pdf_create' %}" class='btn btn-danger'>PDF Create</a>
+  <a href="{% url 'pdf_export' %}"class='btn btn-secondary'>Make PDF</a>
   {% for servmonitor in servmonitor_list %}
     <div class="otakoi">
       <ul class="list-group">
-        <li class="list-group-item active">{{ servmonitor.name }}</li>
-        <li class="list-group-item">{{ servmonitor.time}}</li>
-        <li class="list-group-item">{{ servmonitor.type }}</li>
+        <a href="{{ servmonitor.get_absolute_url }}" class="list-group-item">{{ servmonitor.name }}</a>
         <li class="list-group-item">{{ servmonitor.email}}</li>
         <li class="list-group-item">{{ servmonitor.group }}</li>
-        <li class="list-group-item">{{ servmonitor.group_type }}</li>
-        <li class="list-group-item">{{ servmonitor.gps}}</li>
       </ul>
     </div>
   {% endfor %}
