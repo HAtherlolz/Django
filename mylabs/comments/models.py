@@ -30,5 +30,11 @@ class PdfMaker(models.Model):
     email = models.EmailField()
     url = models.SlugField(max_length=160, unique=True, null=False)
 
+    def get_absolute_pdf_url(self):
+        return reverse("pdf_detail", kwargs={"slug": self.url})
+
+    '''def get_absolute_pdf_export_url(self):
+        return reverse("pdf_export", kwargs={"slug": self.url})'''
+
     def __str__(self):
         return self.name

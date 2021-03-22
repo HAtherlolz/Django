@@ -1,8 +1,7 @@
 {% extends 'comments/base.html' %}
 {% block content %}
   <a href="{% url 'serv_mon_add' %}" class='btn btn-success'>Form Create </a>
-  <a href="{% url 'pdf_create' %}" class='btn btn-danger'>PDF Create</a>
-  <a href="{% url 'pdf_export' %}"class='btn btn-secondary'>Make PDF</a>
+  <a href="{% url 'pdf_list' %}"class='btn btn-secondary'>PDF_LIST</a>
   {% for servmonitor in servmonitor_list %}
     <div class="otakoi">
       <ul class="list-group">

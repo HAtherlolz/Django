@@ -9,7 +9,7 @@
     <li class="list-group-item">{{ servmonitor.group }}</li>
     <li class="list-group-item">{{ servmonitor.group_type }}</li>
     <li class="list-group-item">{{ servmonitor.gps}}</li>
-    <a href="{% url 'serv_mon_download' %}" class='btn btn-secondary'>Export</a>
+    <a href="{% url 'serv_mon_download' servmonitor.pk %}" class='btn btn-secondary'>Export</a>
   </ul>
 </div>
 {% endblock content%}

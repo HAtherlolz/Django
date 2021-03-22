@@ -4,9 +4,9 @@
   <ul class="list-group">
     <li class="list-group-item active">{{ pdfmaker.name }}</li>
     <li class="list-group-item">{{ pdfmaker.time}}</li>
-    <li class="list-group-item">{{ pdfmakerr.type }}</li>
+    <li class="list-group-item">{{ pdfmaker.type }}</li>
     <li class="list-group-item">{{ pdfmaker.email}}</li>
-    <a href="{% url 'serv_mon_download' %}" class='btn btn-secondary'>Export</a>
+    <a href="{% url 'pdf_export' pdfmaker.pk %}" class='btn btn-secondary'>MakePDF</a>
   </ul>
 </div>
 {% endblock content%}

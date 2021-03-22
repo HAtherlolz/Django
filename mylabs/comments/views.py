@@ -23,10 +23,9 @@ class ServDetail(DetailView):
     slug_field = "url"
 
 
-def export(request):
-    bd = ServMonitor.objects.filter(url=slug)
-    for i in bd:
-        data = {'name': i.name, 'type': i.type, 'email': i.email, 'group': i.group, 'group_type': i.group_type, 'gps': i.gps, 'url': i.url}
+def export(request, pk):
+    bd = ServMonitor.objects.get(id=pk)
+    data = {'name': bd.name, 'type': bd.type, 'email': bd.email, 'group': bd.group, 'group_type': bd.group_type, 'gps': bd.gps, 'url': bd.url}
     response = HttpResponse(json.dumps(data), content_type='application/json')
     response['Content-Disposition'] = 'attachment; filename="members.json"'
     return response
@@ -38,10 +37,10 @@ class ServCreateView(CreateView):
 
 
 '''PDF'''
-class PdfMakerList(ListView):
+class PdfMakerView(ListView):
     model = PdfMaker
-    queryset = ServMonitor.objects.all()
-    template = 'comments\pdfmaker_list.html'
+    queryset = PdfMaker.objects.all()
+    #template = 'comments\pdfmaker.html'
 
 class PdfMakerDetail(DetailView):
     model = PdfMaker
@@ -53,15 +52,14 @@ class PdfMakerCreateView(CreateView):
     fields = ('name', 'time', 'type', 'email', 'url')
 
 
-def pdf_export(request):
+def pdf_export(request, pk):
     buffer = io.BytesIO()
     p = canvas.Canvas(buffer)
-    bd = PdfMaker.objects.all()
-    for i in bd:
-        p.drawString(100, 100, i.name)
-        #p.drawString(100, 150, i.time)
-        p.drawString(100, 200, i.type)
-        p.drawString(100, 250, i.email)
+    bd = PdfMaker.objects.get(id=pk)
+    p.drawString(100, 100, bd.name)
+    #p.drawString(100, 150, i.time)
+    p.drawString(100, 200, bd.type)
+    p.drawString(100, 250, bd.email)
     p.showPage()
     p.save()
     buffer.seek(0)
