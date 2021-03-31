@@ -64,3 +64,13 @@ def pdf_export(request, pk):
     p.save()
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+
+
+#class SecureView(View):
+    '''Отображение только для авторизованных пользователей'''
+def index(request):
+    context = {
+        'servmonitor_list': ServMonitor.objects.filter(draft=False)
+        if request.user.is_authenticated else []
+    }
+    return render(request, 'comments\secure.html', context)

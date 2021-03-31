@@ -1,9 +1,6 @@
 {% extends 'comments/base.html' %}
 {% block content %}
-  <a href="{% url 'serv_mon_add' %}" class='btn btn-success'>Form Create </a>
-  <a href="{% url 'pdf_list' %}"class='btn btn-secondary'>PDF_LIST</a>
-  <a href="{% url 'index' %}"class='btn btn-danger'>Secure</a>
-
+  <a href="{% url 'serv_mon_list' %}" class='btn btn-success'>Back to MainPage</a>
   {% if user.is_authenticated %}
       <p>Logged as {{ user.username }}</p>
       <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>

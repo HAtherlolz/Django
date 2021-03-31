@@ -11,4 +11,5 @@ urlpatterns = [
     path("pdf_list/<slug:slug>/", views.PdfMakerDetail.as_view(), name='pdf_detail'),
     path("pdf_create/", views.PdfMakerCreateView.as_view(), name='pdf_create'),
     path("pdf_list/pdf_export/<int:pk>/", views.pdf_export, name='pdf_export'),
+    path("secure/", views.index, name="index"),
 ]
